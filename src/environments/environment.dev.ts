@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  name: 'default',
+  name: 'dev',
   firebase: {
     config: {
       apiKey: "AIzaSyAPPQllSxB1I50s_mdfJocTz5TugNrHRrQ",
