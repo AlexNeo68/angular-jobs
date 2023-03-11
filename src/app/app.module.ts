@@ -7,12 +7,14 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'environments/environment';
+import { HeaderComponent } from './components/header/header.component';
 
 // import { environment } from '@src/environments/environment';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
