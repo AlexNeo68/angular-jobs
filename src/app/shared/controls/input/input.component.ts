@@ -1,4 +1,4 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
 
 @Component({
@@ -13,21 +13,44 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
     }
   ]
 })
+
 export class InputComponent implements OnInit, ControlValueAccessor {
-  writeValue(obj: any): void {
-    throw new Error('Method not implemented.');
+
+  @Input() placeholder: string;
+  @Output() changed = new EventEmitter<string>();
+
+  value: string;
+  isDisabled: boolean;
+
+  constructor() { }
+
+  ngOnInit(): void { }
+
+  private propogateChange: any = () => { };
+  private propogateTouched: any = () => { };
+
+  writeValue(value: string): void {
+    this.value = value;
   }
   registerOnChange(fn: any): void {
-    throw new Error('Method not implemented.');
+    this.propogateChange = fn;
   }
   registerOnTouched(fn: any): void {
-    throw new Error('Method not implemented.');
+    this.propogateTouched = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
-    throw new Error('Method not implemented.');
+    this.isDisabled = isDisabled;
   }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+
+  onKeyup(event: KeyboardEvent): void {
+    this.value = (event.target as HTMLInputElement).value;
+    this.propogateChange(this.value);
+    this.changed.emit(this.value);
   }
+
+  onBlur(): void {
+    this.propogateTouched()
+  }
+
 
 }

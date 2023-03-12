@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputModule } from 'app/shared/controls/input/input.module';
+import { FormFieldModule } from 'app/shared/controls/form-field/form-field.module';
 
 
 
@@ -9,9 +10,11 @@ import { InputModule } from 'app/shared/controls/input/input.module';
   imports: [
     CommonModule,
     InputModule,
+    FormFieldModule
   ],
   exports: [
-    InputModule
+    InputModule,
+    FormFieldModule
   ]
 })
 export class ControlsModule { }
