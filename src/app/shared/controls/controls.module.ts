@@ -7,6 +7,7 @@ import { SelectModule } from 'app/shared/controls/select/select.module';
 import { CheckboxesModule } from 'app/shared/controls/checkboxes/checkboxes.module';
 import { RadiosModule } from 'app/shared/controls/radios/radios.module';
 import { DateModule } from 'app/shared/controls/date/date.module';
+import { DateRangeModule } from 'app/shared/controls/date-range/date-range.module';
 
 @NgModule({
   declarations: [],
@@ -18,7 +19,8 @@ import { DateModule } from 'app/shared/controls/date/date.module';
     SelectModule,
     CheckboxesModule,
     RadiosModule,
-    DateModule
+    DateModule,
+    DateRangeModule
   ],
   exports: [
     InputModule,
@@ -27,7 +29,8 @@ import { DateModule } from 'app/shared/controls/date/date.module';
     SelectModule,
     CheckboxesModule,
     RadiosModule,
-    DateModule
+    DateModule,
+    DateRangeModule
   ],
 })
 export class ControlsModule { }
