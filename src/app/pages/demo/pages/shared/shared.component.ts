@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ControlItem } from 'app/models/frontend';
-import { regex, regexErrors } from 'app/shared';
+import { markFormGroupTouched, regex, regexErrors } from 'app/shared';
 
 @Component({
   selector: 'app-shared',
@@ -14,6 +14,8 @@ export class SharedComponent implements OnInit {
   regexErrors = regexErrors;
 
   items: ControlItem[];
+
+  showSpinner = false;
 
   constructor(private fb: FormBuilder) {
     this.isInline = true;
@@ -94,15 +96,40 @@ export class SharedComponent implements OnInit {
 
   onSubmit(): void {
     console.log('Submit!');
+    if (!this.form.valid) {
+      markFormGroupTouched(this.form);
+    }
   }
 
   onPatchValue(): void {
-    this.form.patchValue({ input: 123 });
+    this.form.patchValue({
+      input: 123,
+      password: 'qwerty',
+      autocomplete: 1,
+      select: 2,
+      checkboxes: [3],
+      radios: 4,
+      date: new Date().getTime(),
+      dateRange: {
+        from: new Date(2019, 5, 10).getTime(),
+        to: new Date(2019, 5, 25).getTime()
+      }
+    });
   }
 
   onToggleInline(): void {
     this.isInline = !this.isInline;
   }
 
-  onToggleDisable(): void {}
+  onToggleDisable(): void {
+    if (this.form.enabled) {
+      this.form.disable();
+    } else {
+      this.form.enable();
+    }
+  }
+
+  onToggleSpinner(): void {
+    this.showSpinner = !this.showSpinner;
+  }
 }
