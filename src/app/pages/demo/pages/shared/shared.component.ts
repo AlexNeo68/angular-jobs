@@ -47,11 +47,13 @@ export class SharedComponent implements OnInit {
           validators: [Validators.required],
         },
       ],
-      autocomplete: [null, {
-        updateOn: 'change', validators: [
-          Validators.required
-        ]
-      }],
+      autocomplete: [
+        null,
+        {
+          updateOn: 'change',
+          validators: [Validators.required],
+        },
+      ],
       select: [
         null,
         {
@@ -80,13 +82,14 @@ export class SharedComponent implements OnInit {
           validators: [Validators.required],
         },
       ],
-      dateRange: [null, {
-        updateOn: 'change', validators: [
-          Validators.required
-        ]
-      }],
+      dateRange: [
+        null,
+        {
+          updateOn: 'change',
+          validators: [Validators.required],
+        },
+      ],
     });
-
   }
 
   onSubmit(): void {
@@ -100,4 +103,6 @@ export class SharedComponent implements OnInit {
   onToggleInline(): void {
     this.isInline = !this.isInline;
   }
+
+  onToggleDisable(): void {}
 }
