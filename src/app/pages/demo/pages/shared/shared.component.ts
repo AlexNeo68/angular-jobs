@@ -32,7 +32,7 @@ export class SharedComponent implements OnInit {
       input: [
         null,
         {
-          updateOn: 'blur',
+          updateOn: 'change',
           validators: [
             Validators.required,
             Validators.minLength(3),
@@ -54,7 +54,29 @@ export class SharedComponent implements OnInit {
           validators: [Validators.required],
         },
       ],
+      checkboxes: [
+        null,
+        {
+          updateOn: 'change',
+          validators: [Validators.required],
+        },
+      ],
+      radios: [
+        null,
+        {
+          updateOn: 'change',
+          validators: [Validators.required],
+        },
+      ],
+      date: [
+        null,
+        {
+          updateOn: 'change',
+          validators: [Validators.required],
+        },
+      ],
     });
+
   }
 
   onSubmit(): void {

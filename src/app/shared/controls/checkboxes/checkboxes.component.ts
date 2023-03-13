@@ -24,16 +24,16 @@ export { ControlItem, Value } from 'app/models/frontend';
   ],
 })
 export class CheckboxesComponent implements OnInit, ControlValueAccessor {
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   @Input() items: ControlItem[];
   @Output() changed = new EventEmitter<Value[]>();
 
-  constructor() {}
+  constructor() { }
 
   value: Value[];
   isDisabled: boolean;
 
-  private propagateChange: any = () => {};
+  private propagateChange: any = () => { };
 
   writeValue(value: Value[]): void {
     this.value = value;
@@ -43,7 +43,7 @@ export class CheckboxesComponent implements OnInit, ControlValueAccessor {
     this.propagateChange = fn;
   }
 
-  registerOnTouched(fn: any): void {}
+  registerOnTouched(fn: any): void { }
 
   setDisabledState(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
