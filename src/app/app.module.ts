@@ -11,7 +11,13 @@ import { environment } from 'environments/environment';
 import { HeaderComponent } from './components/header/header.component';
 
 // Date
-import { MatNativeDateModule, MatDateFormats, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import {
+  MatNativeDateModule,
+  MatDateFormats,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
+import { NotificationModule } from 'app/services';
 
 const APP_DATE_FORMATS: MatDateFormats = {
   parse: {
@@ -21,8 +27,8 @@ const APP_DATE_FORMATS: MatDateFormats = {
     dateInput: { day: 'numeric', month: 'long', year: 'numeric' },
     monthYearLabel: { year: 'numeric', month: 'short' },
     dateA11yLabel: { year: 'numeric', month: 'long', day: 'numeric' },
-    monthYearA11yLabel: { year: 'numeric', month: 'long' }
-  }
+    monthYearA11yLabel: { year: 'numeric', month: 'long' },
+  },
 };
 
 @NgModule({
@@ -35,11 +41,12 @@ const APP_DATE_FORMATS: MatDateFormats = {
 
     provideFirebaseApp(() => initializeApp(environment.firebase.config)),
     provideFirestore(() => getFirestore()),
+    NotificationModule.forRoot(),
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ru-RU' },
-    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
