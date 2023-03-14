@@ -121,6 +121,12 @@ export class SharedComponent implements OnInit {
     });
   }
 
+  onResetForm(): void {
+    this.form.reset();
+    this.form.markAsPristine();
+    this.form.markAsUntouched();
+  }
+
   onToggleInline(): void {
     this.isInline = !this.isInline;
   }

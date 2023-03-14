@@ -2,10 +2,14 @@
   &_error {
     background: $error;
     color: $on-error;
+    --mdc-snackbar-container-color: $error;
+    --mdc-snackbar-supporting-text-color: $on-error;
   }
 
   &_success {
     background: $success;
     color: $on-success;
+    --mdc-snackbar-container-color: $success;
+    --mdc-snackbar-supporting-text-color: $on-success;
   }
 }
