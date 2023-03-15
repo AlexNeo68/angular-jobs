@@ -1,3 +1,4 @@
+import { createReducer, on } from "@ngrx/store";
 import { Dictionaries } from "app/store/dictionaries/dictionaries.models";
 import * as fromActions from './dictionaries.actions'
 
@@ -12,6 +13,12 @@ const initialState: DictionariesState = {
   loading: null,
   error: null,
 }
+
+export const dictionariesReducer = createReducer(initialState,
+  on()
+)
+
+
 export function reducer(state = initialState, action: fromActions.All): DictionariesState {
   switch (action.type) {
     case fromActions.Types.READ: {
