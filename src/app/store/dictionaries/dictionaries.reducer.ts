@@ -1,6 +1,10 @@
-import { createReducer, on } from "@ngrx/store";
-import { Dictionaries } from "app/store/dictionaries/dictionaries.models";
-import * as fromActions from './dictionaries.actions'
+import { createReducer, on } from '@ngrx/store';
+import {
+  Read,
+  ReadError,
+  ReadSuccess,
+} from 'app/store/dictionaries/dictionaries.actions';
+import { Dictionaries } from 'app/store/dictionaries/dictionaries.models';
 
 export interface DictionariesState {
   entities: Dictionaries;
@@ -12,23 +16,32 @@ const initialState: DictionariesState = {
   entities: null,
   loading: null,
   error: null,
-}
+};
 
-export const dictionariesReducer = createReducer(initialState,
-  on()
-)
-
-
-export function reducer(state = initialState, action: fromActions.All): DictionariesState {
-  switch (action.type) {
-    case fromActions.Types.READ: {
-      return { ...state, loading: true, error: null }
-    }
-    case fromActions.Types.READ_SUCCESS: {
-      return { ...state, loading: false, entities: action.dictionaries }
-    }
-    case fromActions.Types.READ_ERROR: {
-      return { ...state, loading: false, error: action.error, entities: null }
-    }
-  }
-}
+export const dictionariesReducer = createReducer(
+  initialState,
+  on(
+    Read,
+    (state): DictionariesState => ({
+      ...state,
+      loading: true,
+    })
+  ),
+  on(
+    ReadSuccess,
+    (state, action): DictionariesState => ({
+      ...state,
+      loading: false,
+      entities: action.dictionaries,
+    })
+  ),
+  on(
+    ReadError,
+    (state, action): DictionariesState => ({
+      ...state,
+      loading: false,
+      error: action.error,
+      entities: null,
+    })
+  )
+);
