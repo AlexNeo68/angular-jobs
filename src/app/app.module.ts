@@ -18,6 +18,7 @@ import {
   MAT_DATE_LOCALE,
 } from '@angular/material/core';
 import { NotificationModule } from 'app/services';
+import { StoreModule } from '@ngrx/store';
 
 const APP_DATE_FORMATS: MatDateFormats = {
   parse: {
@@ -42,6 +43,7 @@ const APP_DATE_FORMATS: MatDateFormats = {
     provideFirebaseApp(() => initializeApp(environment.firebase.config)),
     provideFirestore(() => getFirestore()),
     NotificationModule.forRoot(),
+    StoreModule.forRoot()
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ru-RU' },
@@ -49,4 +51,4 @@ const APP_DATE_FORMATS: MatDateFormats = {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
