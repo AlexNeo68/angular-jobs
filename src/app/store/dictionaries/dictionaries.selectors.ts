@@ -1,21 +1,16 @@
-import { createSelector } from "@ngrx/store";
-import { AppStateInterface } from "src/app/shared/types/appState.interface";
-import { ArticleStateInterface } from "../types/article-state.interface";
-
-export const articleFeatureSelector = (state: AppStateInterface) => state.article;
-
-export const isLoadingSelector = createSelector(
-  articleFeatureSelector,
-  (articleState: ArticleStateInterface) => articleState.isLoading
-);
-
-export const errorSelector = createSelector(
-  articleFeatureSelector,
-  (articleState: ArticleStateInterface) => articleState.error
-);
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { DictionariesState } from "app/store/dictionaries/dictionaries.reducer";
 
 
-export const articleSelector = createSelector(
-  articleFeatureSelector,
-  (articleState: ArticleStateInterface) => articleState.data
-);
+export const getDictionariesState = createFeatureSelector<DictionariesState>('dictionaries')
+
+export const getDictionaries = createSelector(getDictionariesState, state => state.entities)
+
+export const getLoading = createSelector(getDictionariesState, state => state.loading)
+
+export const getIsReady = createSelector(getDictionariesState, state => state.entities && !state.loading)
+
+export const getRoles = createSelector(getDictionaries, state => state.roles)
+export const getQualifications = createSelector(getDictionaries, state => state.qualifications)
+export const getSpecializations = createSelector(getDictionaries, state => state.specializations)
+export const getSkills = createSelector(getDictionaries, state => state.skills)

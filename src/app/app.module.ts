@@ -18,7 +18,14 @@ import {
   MAT_DATE_LOCALE,
 } from '@angular/material/core';
 import { NotificationModule } from 'app/services';
+
+//Store
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+const StoreDevTools = !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : [];
+import { reducers, effects } from './store'
+
 
 const APP_DATE_FORMATS: MatDateFormats = {
   parse: {
@@ -43,7 +50,9 @@ const APP_DATE_FORMATS: MatDateFormats = {
     provideFirebaseApp(() => initializeApp(environment.firebase.config)),
     provideFirestore(() => getFirestore()),
     NotificationModule.forRoot(),
-    StoreModule.forRoot()
+    StoreModule.forRoot(reducers, { runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true } }),
+    EffectsModule.forRoot(effects),
+    StoreDevTools
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ru-RU' },

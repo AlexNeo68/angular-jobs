@@ -11,5 +11,5 @@ export interface Dictionaries {
   specializations: Dictionary;
   qualifications: Dictionary;
   skills: Dictionary;
-  contries: Dictionary;
+  countries: Dictionary;
 }
