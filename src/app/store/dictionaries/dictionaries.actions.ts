@@ -1,4 +1,4 @@
-import { Action } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 import { Dictionaries } from 'app/store/dictionaries/dictionaries.models';
 
 export enum Types {
@@ -7,22 +7,12 @@ export enum Types {
   READ_ERROR = '[Dictionaries] Read: Error',
 }
 
-export class Read implements Action {
-  readonly type: string = Types.READ;
-  constructor() { }
-}
-
-export class ReadSuccess implements Action {
-  readonly type: string = Types.READ_SUCCESS;
-  public dictionaries: Dictionaries = null;
-  constructor(private _dictionaries: Dictionaries) {
-    this.dictionaries = _dictionaries
-  }
-}
-
-export class ReadError implements Action {
-  readonly type: string = Types.READ_ERROR;
-  constructor(public error: string) { }
-}
-
-export type All = Read | ReadSuccess | ReadError;
+export const ReadDictionary = createAction(Types.READ);
+export const ReadDictionarySuccess = createAction(
+  Types.READ_SUCCESS,
+  props<{ dictionaries: Dictionaries }>()
+);
+export const ReadDictionaryError = createAction(
+  Types.READ_ERROR,
+  props<{ error: string }>()
+);
